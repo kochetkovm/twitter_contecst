@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Nav from "./components/Nav";
+import Body from "./components/Body";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const UserContext = React.createContext();
+
+
+class App extends React.Component{
+  state = {
+    user:{
+      avatar:"https://www.gravatar.com/avatar/0?d=monsterid",
+      name: "Monster",
+      followers: 1000,
+      following: 100
+    }
+  }
+
+
+  render() {
+    return(
+        <div className='app'>
+         <UserContext.Provider value={
+             {
+                 user: this.state.user
+             }
+         }>
+             <Nav />
+             <Body />
+         </UserContext.Provider>
+        </div>
+    )
+  }
 }
 
 export default App;
