@@ -10,6 +10,10 @@ class UserAvatar extends React.Component {
                     className={`user-avatar ${this.props.size || ""}`}
                     alt='User avatar'
                     src={value.user.avatar}
+                    onClick={() => {
+                        let url = prompt("Enter new avatar url: ");
+                        value.changeAvatar(url);
+                    }}
                 />
             )
             }

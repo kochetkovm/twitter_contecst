@@ -4,7 +4,6 @@ import Body from "./components/Body";
 
 export const UserContext = React.createContext();
 
-
 class App extends React.Component{
   state = {
     user:{
@@ -14,14 +13,19 @@ class App extends React.Component{
       following: 100
     }
   }
-
+    changeAvatar = (url) => {
+        let tmp = this.state.user;
+        tmp.avatar = url;
+        this.setState({user: tmp});
+            }
 
   render() {
     return(
         <div className='app'>
          <UserContext.Provider value={
              {
-                 user: this.state.user
+                 user: this.state.user,
+                 changeAvatar: this.changeAvatar
              }
          }>
              <Nav />
@@ -31,5 +35,4 @@ class App extends React.Component{
     )
   }
 }
-
 export default App;
